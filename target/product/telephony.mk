@@ -22,6 +22,7 @@ PRODUCT_PACKAGES := \
     Dialer \
     messaging \
     CallLogBackup \
+    Stk \
     rild
 
 PRODUCT_COPY_FILES := \
