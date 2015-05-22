@@ -181,7 +181,7 @@ include $(BUILD_SYSTEM)/device.mk
 
 # A Turbo build needs only the Turbo product makefiles.
 ifneq ($(TURBO_BUILD),)
-  all_product_configs := $(shell ls device/*/$(TURBO_BUILD)/turbo.mk)
+  all_product_configs := $(shell find device -path "*/$(TURBO_BUILD)/turbo.mk")
 else
   ifneq ($(strip $(TARGET_BUILD_APPS)),)
   # An unbundled app build needs only the core product makefiles.
