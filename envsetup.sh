@@ -514,7 +514,7 @@ function breakfast()
         else
             # This is probably just the Turbo model name
             if [ -z "$variant" ]; then
-                variant="user"
+                variant="userdebug"
             fi
             lunch turbo_$target-$variant
         fi
