@@ -292,6 +292,7 @@ LOCAL_MODULE_STEM_32:=
 LOCAL_MODULE_STEM_64:=
 LOCAL_CLANG_32:=
 LOCAL_CLANG_64:=
+LOCAL_PROTOC_OUTPUT:=
 
 # Trim MAKEFILE_LIST so that $(call my-dir) doesn't need to
 # iterate over thousands of entries every time.
