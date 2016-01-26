@@ -42,11 +42,11 @@ except ImportError:
 DEBUG = False
 default_manifest = ".repo/manifest.xml"
 
-custom_local_manifest = ".repo/local_manifests/slim_manifest.xml"
-custom_default_revision = "mm6.0"
-custom_dependencies = "slim.dependencies"
-org_manifest = "SlimRoms"  # leave empty if org is provided in manifest
-org_display = "SlimRoms"  # needed for displaying
+custom_local_manifest = ".repo/local_manifests/turbo_manifest.xml"
+custom_default_revision = "mm"
+custom_dependencies = "turbo.dependencies"
+org_manifest = "TurboROM-Devices"  # leave empty if org is provided in manifest
+org_display = "TurboROM-Devices"  # needed for displaying
 
 github_auth = None
 
