@@ -67,7 +67,7 @@ TARGET_STRIP := $(TARGET_TOOLS_PREFIX)strip$(HOST_EXECUTABLE_SUFFIX)
 
 TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
-TARGET_mips_CFLAGS :=	-O2 \
+TARGET_mips_CFLAGS :=	-O3 \
 			-fomit-frame-pointer \
 			-fno-strict-aliasing    \
 			-funswitch-loops
