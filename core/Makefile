@@ -1886,14 +1886,14 @@ bacon: otapackage
 	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════════════"${CL_RST}
 	@echo -e ${CL_CYN}" *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* "${CL_RST}
 	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════════════"${CL_RST}
-	@echo -e ${CL_BLU}" 	       	    ████████╗██╗   ██╗██████╗ ██████╗  ██████╗ 			    "${CL_RST}
-	@echo -e ${CL_BLU}"		    ╚══██╔══╝██║   ██║██╔══██╗██╔══██╗██╔═══██╗			    "${CL_RST}
-	@echo -e ${CL_BLU}"     	       ██║   ██║   ██║██████╔╝██████╔╝██║   ██║			    "${CL_RST}
-	@echo -e ${CL_BLU}"     	       ██║   ██║   ██║██╔══██╗██╔══██╗██║   ██║			    "${CL_RST}
-	@echo -e ${CL_BLU}"     	       ██║   ╚██████╔╝██║  ██║██████╔╝╚██████╔╝			    "${CL_RST}
-	@echo -e ${CL_BLU}"     	       ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ 			    "${CL_RST}
+	@echo -e ${CL_BLU}"			████████╗██╗   ██╗██████╗ ██████╗  ██████╗		    "${CL_RST}
+	@echo -e ${CL_BLU}"			╚══██╔══╝██║   ██║██╔══██╗██╔══██╗██╔═══██╗		    "${CL_RST}
+	@echo -e ${CL_BLU}"		   	   ██║   ██║   ██║██████╔╝██████╔╝██║   ██║		    "${CL_RST}
+	@echo -e ${CL_BLU}"		   	   ██║   ██║   ██║██╔══██╗██╔══██╗██║   ██║		    "${CL_RST}
+	@echo -e ${CL_BLU}"		   	   ██║   ╚██████╔╝██║  ██║██████╔╝╚██████╔╝		    "${CL_RST}
+	@echo -e ${CL_BLU}"		   	   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝		    "${CL_RST}
 	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════════════"${CL_RST}
-	@echo -e ${CL_CYN}" *Turbo*        Package zip: " ${CL_MAG} $(TURBO_TARGET_PACKAGE)	    *Turbo* "${CL_RST}
+	@echo -e ${CL_CYN}" *Turbo*        Package zip: "${CL_MAG} $(TURBO_TARGET_PACKAGE)"	    *Turbo* "${CL_RST}
 	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════════════"${CL_RST}
 
 bootzip: bootimage
