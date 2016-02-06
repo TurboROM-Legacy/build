@@ -1883,7 +1883,18 @@ otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 bacon: otapackage
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(TURBO_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(TURBO_TARGET_PACKAGE) > $(TURBO_TARGET_PACKAGE).md5sum
-	@echo -e ${CL_CYN}"Package Complete: $(TURBO_TARGET_PACKAGE)"${CL_RST}
+	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════════════"${CL_RST}
+	@echo -e ${CL_CYN}" *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* "${CL_RST}
+	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════════════"${CL_RST}
+	@echo -e ${CL_BLU}" 	       	    ████████╗██╗   ██╗██████╗ ██████╗  ██████╗ 			    "${CL_RST}
+	@echo -e ${CL_BLU}"		    ╚══██╔══╝██║   ██║██╔══██╗██╔══██╗██╔═══██╗			    "${CL_RST}
+	@echo -e ${CL_BLU}"     	       ██║   ██║   ██║██████╔╝██████╔╝██║   ██║			    "${CL_RST}
+	@echo -e ${CL_BLU}"     	       ██║   ██║   ██║██╔══██╗██╔══██╗██║   ██║			    "${CL_RST}
+	@echo -e ${CL_BLU}"     	       ██║   ╚██████╔╝██║  ██║██████╔╝╚██████╔╝			    "${CL_RST}
+	@echo -e ${CL_BLU}"     	       ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝ 			    "${CL_RST}
+	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════════════"${CL_RST}
+	@echo -e ${CL_CYN}" *Turbo*        Package zip: " ${CL_MAG} $(TURBO_TARGET_PACKAGE)	    *Turbo* "${CL_RST}
+	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════════════"${CL_RST}
 
 bootzip: bootimage
 	$(BOOT_ZIP_FROM_IMAGE_SCRIPT) \
