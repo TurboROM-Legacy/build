@@ -64,7 +64,15 @@ endif # CALLED_FROM_SETUP
 
 ifneq ($(PRINT_BUILD_CONFIG),)
 HOST_OS_EXTRA:=$(shell python -c "import platform; print(platform.platform())")
-$(info ============================================)
+$(info =======================================================)
+$(info ==  _______  __   __  ______    _______  _______     ==)
+$(info == |       ||  | |  ||    _ |  |  _    ||       |    ==)
+$(info == |_     _||  | |  ||   | ||  | |_|   ||   _   |    ==)
+$(info ==   |   |  |  |_|  ||   |_||_ |       ||  | |  |    ==)
+$(info ==   |   |  |       ||    __  ||  _   | |  |_|  |    ==)
+$(info ==   |   |  |       ||   |  | || |_|   ||       |    ==)
+$(info ==   |___|  |_______||___|  |_||_______||_______|    ==)
+$(info =======================================================)
 $(info   PLATFORM_VERSION_CODENAME=$(PLATFORM_VERSION_CODENAME))
 $(info   PLATFORM_VERSION=$(PLATFORM_VERSION))
 $(info   TURBO_VERSION=$(TURBO_VERSION))
@@ -88,5 +96,5 @@ ifeq ($(CYNGN_TARGET),true)
 $(info   CYNGN_TARGET=$(CYNGN_TARGET))
 $(info   CYNGN_FEATURES=$(CYNGN_FEATURES))
 endif
-$(info ============================================)
+$(info =======================================================)
 endif
