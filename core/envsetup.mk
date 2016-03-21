@@ -33,7 +33,7 @@ endif
 
 # the variant -- the set of files that are included for a build
 ifeq ($(strip $(TARGET_BUILD_VARIANT)),)
-TARGET_BUILD_VARIANT := eng
+TARGET_BUILD_VARIANT := userdebug
 endif
 
 # ---------------------------------------------------------------
