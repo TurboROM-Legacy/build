@@ -85,6 +85,9 @@ dont_bother_goals := clean clobber dataclean installclean \
 ifneq ($(filter $(dont_bother_goals), $(MAKECMDGOALS)),)
 dont_bother := true
 endif
+ifeq ($(MAKECMDGOALS),clob)
+dont_bother := true
+endif
 ifeq ($(MAKECMDGOALS),magic)
 dont_bother := true
 endif
@@ -1069,6 +1072,26 @@ appclean:
 	@rm -rf $(OUT_DIR)/target/product/*/system/app
 	@rm -rf $(OUT_DIR)/target/product/*/system/priv-app
 	@echo -e ${CL_GRN}"All apks erased"${CL_RST}
+
+# Clears out basically everything that needs to be rebuilt
+.PHONY: clob
+clob:
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/Settings_intermediates/*
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/SystemUI_intermediates/*
+	@rm -rf $(OUT_DIR)/target/product/*/obj/PACKAGING/*
+	@rm -rf $(OUT_DIR)/target/product/*/kernel
+	@rm -rf $(OUT_DIR)/target/product/*/boot.img
+	@rm -rf $(OUT_DIR)/target/product/*/*.img
+	@rm -rf $(OUT_DIR)/target/product/*/recovery/
+	@rm -rf $(OUT_DIR)/target/product/*/recovery.img
+	@rm -rf $(OUT_DIR)/target/product/*/root/
+	@rm -rf $(OUT_DIR)/target/product/*/system/
+	@rm -rf $(OUT_DIR)/target/product/*/system.img
+	@rm -rf $(OUT_DIR)/target/product/*/system/build.prop
+	@rm -rf $(OUT_DIR)/target/product/*/*.zip
+	@rm -rf $(OUT_DIR)/target/product/*/*.md5sum
+	@rm -rf $(OUT_DIR)/target/product/*/Changelog.txt
+	@echo -e ${CL_GRN}"Removed basically everything worth removing without doing a clean build"${CL_RST}
 
 # Clears out all .img files
 .PHONY: imgclean
