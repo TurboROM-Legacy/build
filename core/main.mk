@@ -1091,6 +1091,12 @@ clob:
 	@rm -rf $(OUT_DIR)/target/product/*/*.zip
 	@rm -rf $(OUT_DIR)/target/product/*/*.md5sum
 	@rm -rf $(OUT_DIR)/target/product/*/Changelog.txt
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/TeleService_intermediates 
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/SystemUITests_intermediates 
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/Settings_intermediates 
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/framework-res_intermediates 
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/SettingsProvider_intermediates 
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/SystemUI_intermediates 
 	@echo -e ${CL_GRN}"Removed basically everything worth removing without doing a clean build"${CL_RST}
 
 # Clears out all .img files
