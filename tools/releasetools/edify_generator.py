@@ -227,6 +227,10 @@ class EdifyGenerator(object):
       mount_flags = mount_dict.get(p.fs_type, "")
       if p.context is not None:
         mount_flags = p.context + ("," + mount_flags if mount_flags else "")
+      if p.fs_type == 'f2fs':
+        self.script.append('run_program("/sbin/mount", "-t", "auto", "%s", "%s");' %
+                           (p.device, p.mount_point))
+      else:
       self.script.append('mount("%s", "%s", "%s", "%s", "%s");' % (
           p.fs_type, common.PARTITION_TYPES[p.fs_type], p.device,
           p.mount_point, mount_flags))
@@ -272,6 +276,10 @@ class EdifyGenerator(object):
     fstab = self.fstab
     if fstab:
       p = fstab[partition]
+      if p.fs_type == 'f2fs':
+        self.script.append('run_program("/sbin/mount", "-t", "auto", "%s", "%s");' %
+                           (p.device, p.mount_point))
+      else:
       self.script.append('format("%s", "%s", "%s", "%s", "%s");' %
                          (p.fs_type, common.PARTITION_TYPES[p.fs_type],
                           p.device, p.length, p.mount_point))
