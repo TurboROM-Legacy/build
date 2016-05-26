@@ -77,6 +77,28 @@ KERNEL_HEADERS := $(KERNEL_HEADERS_COMMON) $(KERNEL_HEADERS_ARCH)
 
 android_config_h := $(call select-android-config-h,target_linux-x86)
 
+ifeq ($(TURBO_GENERAL_OPTS),true)
+$(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += \
+			-O3 \
+			-Wa,--noexecstack \
+			-Werror=format-security \
+			-D_FORTIFY_SOURCE=2 \
+			-Wstrict-aliasing=2 \
+			-ffunction-sections \
+			-finline-functions \
+			-finline-limit=300 \
+			-fno-short-enums \
+			-fstrict-aliasing \
+			-funswitch-loops \
+			-funwind-tables \
+			-fstack-protector \
+			-m32 \
+			-no-canonical-prefixes \
+			-fno-canonical-system-headers \
+			-include $(android_config_h) \
+			-I $(dir $(android_config_h))
+
+else
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += \
 			-O2 \
 			-Wa,--noexecstack \
@@ -96,6 +118,8 @@ $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += \
 			-fno-canonical-system-headers \
 			-include $(android_config_h) \
 			-I $(dir $(android_config_h))
+
+endif
 
 $(combo_2nd_arch_prefix)TARGET_GLOBAL_CFLAGS += $(arch_variant_cflags)
 

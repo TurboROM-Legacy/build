@@ -123,6 +123,15 @@ TARGET_GLOBAL_LDFLAGS += -Wl,--allow-shlib-undefined
 TARGET_GLOBAL_CPPFLAGS += -fvisibility-inlines-hidden
 
 # More flags/options can be added here
+ifeq ($(TURBO_GENERAL_OPTS),true)
+TARGET_RELEASE_CFLAGS := \
+			-DNDEBUG \
+			-O3 \
+			-Wstrict-aliasing=2 \
+			-fgcse-after-reload \
+			-frerun-cse-after-loop \
+			-frename-registers
+else
 TARGET_RELEASE_CFLAGS := \
 			-DNDEBUG \
 			-O2 -g \
@@ -130,6 +139,7 @@ TARGET_RELEASE_CFLAGS := \
 			-fgcse-after-reload \
 			-frerun-cse-after-loop \
 			-frename-registers
+endif
 
 libc_root := bionic/libc
 libm_root := bionic/libm

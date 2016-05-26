@@ -67,10 +67,17 @@ $(combo_2nd_arch_prefix)TARGET_STRIP := $($(combo_2nd_arch_prefix)TARGET_TOOLS_P
 
 $(combo_2nd_arch_prefix)TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
+ifeq ($(TURBO_GENERAL_OPTS),true)
+TARGET_mips_CFLAGS :=	-O3 \
+			-fomit-frame-pointer \
+			-fno-strict-aliasing    \
+			-funswitch-loops
+else
 TARGET_mips_CFLAGS :=	-O2 \
 			-fomit-frame-pointer \
 			-fno-strict-aliasing    \
 			-funswitch-loops
+endif
 
 # Set FORCE_MIPS_DEBUGGING to "true" in your buildspec.mk
 # or in your environment to gdb debugging easier.

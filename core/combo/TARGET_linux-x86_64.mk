@@ -75,6 +75,26 @@ KERNEL_HEADERS_COMMON := $(libc_root)/kernel/uapi
 KERNEL_HEADERS_ARCH   := $(libc_root)/kernel/uapi/asm-x86 # x86 covers both x86 and x86_64.
 KERNEL_HEADERS := $(KERNEL_HEADERS_COMMON) $(KERNEL_HEADERS_ARCH)
 
+ifeq ($(TURBO_GENERAL_OPTS),true)
+TARGET_GLOBAL_CFLAGS += \
+			-O3 \
+			-Wa,--noexecstack \
+			-Werror=format-security \
+			-D_FORTIFY_SOURCE=2 \
+			-Wstrict-aliasing=2 \
+			-ffunction-sections \
+			-finline-functions \
+			-finline-limit=300 \
+			-fno-short-enums \
+			-fstrict-aliasing \
+			-funswitch-loops \
+			-funwind-tables \
+			-fstack-protector \
+			-m64 \
+			-no-canonical-prefixes \
+			-fno-canonical-system-headers
+
+else
 TARGET_GLOBAL_CFLAGS += \
 			-O2 \
 			-Wa,--noexecstack \
@@ -92,6 +112,8 @@ TARGET_GLOBAL_CFLAGS += \
 			-m64 \
 			-no-canonical-prefixes \
 			-fno-canonical-system-headers
+
+endif
 
 # Help catch common 32/64-bit errors.
 TARGET_GLOBAL_CFLAGS += \

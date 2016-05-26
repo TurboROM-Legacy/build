@@ -67,10 +67,17 @@ TARGET_STRIP := $(TARGET_TOOLS_PREFIX)strip$(HOST_EXECUTABLE_SUFFIX)
 
 TARGET_NO_UNDEFINED_LDFLAGS := -Wl,--no-undefined
 
+ifeq ($(TURBO_GENERAL_OPTS),true)
+TARGET_mips_CFLAGS :=	-O3 \
+			-fomit-frame-pointer \
+			-fno-strict-aliasing    \
+			-funswitch-loops
+else
 TARGET_mips_CFLAGS :=	-O2 \
 			-fomit-frame-pointer \
 			-fno-strict-aliasing    \
 			-funswitch-loops
+endif
 
 # Set FORCE_MIPS_DEBUGGING to "true" in your buildspec.mk
 # or in your environment to gdb debugging easier.
