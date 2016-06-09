@@ -21,7 +21,6 @@ PRODUCT_PACKAGES := \
     CarrierConfig \
     Dialer \
     CallLogBackup \
-    Stk \
     rild
 
 PRODUCT_COPY_FILES := \
