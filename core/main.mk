@@ -85,6 +85,33 @@ dont_bother_goals := clean clobber dataclean installclean \
 ifneq ($(filter $(dont_bother_goals), $(MAKECMDGOALS)),)
 dont_bother := true
 endif
+ifeq ($(MAKECMDGOALS),appclean)
+dont_bother := true
+endif
+ifeq ($(MAKECMDGOALS),clob)
+dont_bother := true
+endif
+ifeq ($(MAKECMDGOALS),dirty)
+dont_bother := true
+endif
+ifeq ($(MAKECMDGOALS),imgclean)
+dont_bother := true
+endif
+ifeq ($(MAKECMDGOALS),kernelclean)
+dont_bother := true
+endif
+ifeq ($(MAKECMDGOALS),magic)
+dont_bother := true
+endif
+ifeq ($(MAKECMDGOALS),recoveryclean)
+dont_bother := true
+endif
+ifeq ($(MAKECMDGOALS),rootclean)
+dont_bother := true
+endif
+ifeq ($(MAKECMDGOALS),systemclean)
+dont_bother := true
+endif
 
 # Targets that provide quick help on the build system.
 include $(BUILD_SYSTEM)/help.mk
@@ -436,6 +463,24 @@ endif
 ifeq ($(filter-out $(INTERNAL_MODIFIER_TARGETS),$(MAKECMDGOALS)),)
 .PHONY: $(INTERNAL_MODIFIER_TARGETS)
 $(INTERNAL_MODIFIER_TARGETS): $(DEFAULT_GOAL)
+endif
+
+# These targets are going to delete stuff, don't bother including
+# the whole directory tree if that's all we're going to do
+ifeq ($(MAKECMDGOALS),clean)
+dont_bother := true
+endif
+ifeq ($(MAKECMDGOALS),clobber)
+dont_bother := true
+endif
+ifeq ($(MAKECMDGOALS),dataclean)
+dont_bother := true
+endif
+ifeq ($(MAKECMDGOALS),installclean)
+dont_bother := true
+endif
+ifeq ($(MAKECMDGOALS),novo)
+dont_bother := true
 endif
 
 # Bring in all modules that need to be built.
@@ -1041,6 +1086,88 @@ clean:
 clobber: clean
 
 # The rules for dataclean and installclean are defined in cleanbuild.mk.
+
+# Clears out all APKs
+.PHONY: appclean
+appclean:
+	@rm -rf $(OUT_DIR)/target/product/*/system/app
+	@rm -rf $(OUT_DIR)/target/product/*/system/priv-app
+	@echo -e ${CL_GRN}"All apks erased"${CL_RST}
+
+# Clears out basically everything that needs to be rebuilt
+.PHONY: clob
+clob:
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/Settings_intermediates/*
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/SystemUI_intermediates/*
+	@rm -rf $(OUT_DIR)/target/product/*/obj/PACKAGING/*
+	@rm -rf $(OUT_DIR)/target/product/*/kernel
+	@rm -rf $(OUT_DIR)/target/product/*/*.img
+	@rm -rf $(OUT_DIR)/target/product/*/recovery/
+	@rm -rf $(OUT_DIR)/target/product/*/root/
+	@rm -rf $(OUT_DIR)/target/product/*/system/*
+	@rm -rf $(OUT_DIR)/target/product/*/*.zip
+	@rm -rf $(OUT_DIR)/target/product/*/*.md5sum
+	@rm -rf $(OUT_DIR)/target/product/*/Changelog.txt
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/TeleService_intermediates 
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/SystemUITests_intermediates 
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/Settings_intermediates 
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/framework-res_intermediates 
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/SettingsProvider_intermediates 
+	@rm -rf $(OUT_DIR)/target/product/*/obj/APPS/SystemUI_intermediates 
+	@echo -e ${CL_GRN}"Removed basically everything worth removing without doing a make clean, clobber, magic, or novo."${CL_RST}
+
+# Clears out zip and build.prop
+.PHONY: dirty
+dirty:
+	@rm -rf $(OUT_DIR)/target/product/*/system/build.prop
+	@rm -rf $(OUT_DIR)/target/product/*/*.zip
+	@rm -rf $(OUT_DIR)/target/product/*/*.md5sum
+	@echo -e ${CL_GRN}"build.prop and ZIP files erased."${CL_RST}
+
+# Clears out all .img files
+.PHONY: imgclean
+imgclean:
+	@rm -rf $(OUT_DIR)/target/product/*/*.img
+	@echo -e ${CL_GRN}"All .img files erased."${CL_RST}
+
+# Clears out all kernel stuff
+.PHONY: kernelclean
+kernelclean:
+	@rm -rf $(OUT_DIR)/target/product/*/kernel
+	@rm -rf $(OUT_DIR)/target/product/*/boot.img
+	@echo -e ${CL_GRN}"All kernel compnents erased"${CL_RST}
+
+# Removes the OUTDIR/target/out directory
+.PHONY: magic
+magic:
+	@rm -rf $(OUT_DIR)/target/product/*
+	@echo -e ${CL_GRN}"$(OUT_DIR)/target/product directory removed."${CL_RST}
+
+# This should be almost as good as a clobber but keeping many of the time intensive files
+.PHONY: novo
+novo:
+	@rm -rf $(OUT_DIR)/target/*
+	@echo -e ${CL_GRN}"$(OUT_DIR)/target directory removed."${CL_RST}
+
+# Clears out all recovery stuff
+.PHONY: recoveryclean
+recoveryclean:
+	@rm -rf $(OUT_DIR)/target/product/*/recovery/
+	@rm -rf $(OUT_DIR)/target/product/*/recovery.img
+	@echo -e ${CL_GRN}"All recovery components erased."${CL_RST}
+
+# Clears out all root stuff
+.PHONY: rootclean
+rootclean:
+	@rm -rf $(OUT_DIR)/target/product/*/root/
+	@echo -e ${CL_GRN}"All /root components erased."${CL_RST}
+
+# Clears out all system stuff
+.PHONY: systemclean
+systemclean:
+	@rm -rf $(OUT_DIR)/target/product/*/system/
+	@rm -rf $(OUT_DIR)/target/product/*/system.img
+	@echo -e ${CL_GRN}"All /system components erased."${CL_RST}
 
 #xxx scrape this from ALL_MODULE_NAME_TAGS
 .PHONY: modules
