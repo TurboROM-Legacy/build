@@ -604,6 +604,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
       common.ZipWriteStr(output_zip, "system/bin/backuptool.functions",
                      ""+input_zip.read("SYSTEM/bin/backuptool.functions"))
     script.Mount("/system")
+    script.Print("Backing up data...")
     script.RunBackup("backup")
     script.Unmount("/system")
 
@@ -682,6 +683,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
     script.ShowProgress(0.02, 10)
     if block_based:
       script.Mount("/system")
+    script.Print("Restoring data...")
     script.RunBackup("restore")
     if block_based:
       script.Unmount("/system")
