@@ -1814,6 +1814,19 @@ $(INTERNAL_OTA_PACKAGE_TARGET): $(BUILT_TARGET_FILES_PACKAGE) $(DISTTOOLS)
 otapackage: $(INTERNAL_OTA_PACKAGE_TARGET)
 bacon: otapackage
 turbo: otapackage
+	$(hide) $(MD5SUM) $(INTERNAL_OTA_PACKAGE_TARGET) > $(INTERNAL_OTA_PACKAGE_TARGET).md5sum
+	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════════════"${CL_RST}
+	@echo -e ${CL_CYN}" *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* *Turbo* "${CL_RST}
+	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════════════"${CL_RST}
+	@echo -e ${CL_GRN}"			████████╗██╗   ██╗██████╗ ██████╗  ██████╗		    "${CL_RST}
+	@echo -e ${CL_GRN}"			╚══██╔══╝██║   ██║██╔══██╗██╔══██╗██╔═══██╗		    "${CL_RST}
+	@echo -e ${CL_GRN}"		   	   ██║   ██║   ██║██████╔╝██████╔╝██║   ██║		    "${CL_RST}
+	@echo -e ${CL_GRN}"		   	   ██║   ██║   ██║██╔══██╗██╔══██╗██║   ██║		    "${CL_RST}
+	@echo -e ${CL_GRN}"		   	   ██║   ╚██████╔╝██║  ██║██████╔╝╚██████╔╝		    "${CL_RST}
+	@echo -e ${CL_GRN}"		   	   ╚═╝    ╚═════╝ ╚═╝  ╚═╝╚═════╝  ╚═════╝		    "${CL_RST}
+	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════════════"${CL_RST}
+	@echo -e ${CL_CYN}" Package zip: "${CL_RST}${CL_MAG}$(INTERNAL_OTA_PACKAGE_TARGET)"		    "${CL_RST}
+	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════════════"${CL_RST}
 
 bootzip: bootimage
 	$(BOOT_ZIP_FROM_IMAGE_SCRIPT) \
