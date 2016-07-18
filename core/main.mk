@@ -1135,7 +1135,7 @@ imgclean:
 kernelclean:
 	@rm -rf $(OUT_DIR)/target/product/*/kernel
 	@rm -rf $(OUT_DIR)/target/product/*/boot.img
-	@echo -e ${CL_GRN}"All kernel compnents erased"${CL_RST}
+	@echo -e ${CL_GRN}"All kernel components erased"${CL_RST}
 
 # Removes the OUTDIR/target/out directory
 .PHONY: magic
